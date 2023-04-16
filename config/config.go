@@ -1,7 +1,7 @@
 package config
 
 import (
-	"davidPardoC/rest/infraestructure"
+	"davidPardoC/rest/users/infraestructure"
 
 	"github.com/gin-gonic/gin"
 )

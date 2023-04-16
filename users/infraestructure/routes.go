@@ -2,14 +2,19 @@ package infraestructure
 
 import (
 	"davidPardoC/rest/common"
+	"davidPardoC/rest/users/adapters"
 
 	"github.com/gin-gonic/gin"
 )
 
 func CreateUserRoutes(r *gin.RouterGroup) {
+
+	userAdapter := adapters.NewUserAdapter()
+
 	userRouter := r.Group("/users")
 	{
 		userRouter.GET("/", func(ctx *gin.Context) {
+			userAdapter.HandleNewUser()
 			message := common.CreateSuccesCreatedMessage(common.UserResource)
 			ctx.JSON(200, message)
 		})
