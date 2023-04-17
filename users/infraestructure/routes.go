@@ -3,13 +3,15 @@ package infraestructure
 import (
 	"davidPardoC/rest/common"
 	"davidPardoC/rest/users/adapters"
+	"davidPardoC/rest/users/usecase"
 
 	"github.com/gin-gonic/gin"
 )
 
 func CreateUserRoutes(r *gin.RouterGroup) {
 
-	userAdapter := adapters.NewUserAdapter()
+	useruseCase := usecase.NewUserUseCase()
+	userAdapter := adapters.NewUserAdapter(useruseCase)
 
 	userRouter := r.Group("/users")
 	{
