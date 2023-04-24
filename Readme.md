@@ -16,11 +16,10 @@ Recomended to use a live reload tool like [air](https://github.com/cosmtrek/air)
    ```
 3. Development server: justo run
 
-   ````
+   ```
    air -c .air-unix.toml if youre developing in Mac/Linux , or
    air -c .air-windows.toml if you are developing in windows.
    ```
-   ````
 
 TO DO:
 
