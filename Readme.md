@@ -14,7 +14,7 @@ Recomended to use a live reload tool like [air](https://github.com/cosmtrek/air)
    ```
    docker-compose -f docker-conpose.local.yml up -d
    ```
-3. Development server: justo run
+3. Development server with live reload:
 
    Mac/linux:
 
