@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  server:
+    image: checky-go-server
+    ports:
+      - 8080:8080
+    build:
+      context: .
+      dockerfile: ./Dockerfile.server
+  web:
+    image: checky-web-app
+    ports:
+      - 3000:3000
+    build:
+      context: .
+      dockerfile: ./Dockerfile.web
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8000:8080
+
