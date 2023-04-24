@@ -25,7 +25,7 @@ Recomended to use a live reload tool like [air](https://github.com/cosmtrek/air)
    Windows:
 
    ```
-   air -c .air-windows.toml if you are developing in windows.
+   air -c .air-windows.toml
    ```
 
 TO DO:
