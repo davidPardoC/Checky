@@ -1,15 +1,17 @@
 package usecase
 
-import "davidPardoC/rest/users/repository/postgres"
+import "davidPardoC/rest/users/repository"
 
 type UserUseCase struct {
-	UserRepository postgres.UserPostgresRepository
+	repository repository.UserRepository
 }
 
-func NewUserUseCase() *UserUseCase {
-	return &UserUseCase{}
+func NewUserUseCase(repository repository.UserRepository) *UserUseCase {
+	return &UserUseCase{
+		repository: repository,
+	}
 }
 
 func (uc *UserUseCase) CreateNewUser() {
-	uc.UserRepository.InsertNewUser()
+	uc.repository.InsertNewUser()
 }

@@ -1,15 +1,17 @@
 package usecases
 
-import "davidPardoC/rest/users/repository/postgres"
+import (
+	"davidPardoC/rest/users/repository"
+)
 
 type AuthUseCases struct {
-	userRepo *postgres.UserPostgresRepository
+	userRepo *repository.UserRepository
 }
 
-func NewAuthUseCases() *AuthUseCases {
+func NewAuthUseCases(userRepo repository.UserRepository) *AuthUseCases {
 	return &AuthUseCases{}
 }
 
 func (uc *AuthUseCases) SignUpUser(email string) {
-	uc.userRepo.GetUserByEmail(email)
+
 }

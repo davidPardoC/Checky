@@ -4,14 +4,17 @@ import (
 	"davidPardoC/rest/auth/adapters"
 	"davidPardoC/rest/auth/dtos"
 	"davidPardoC/rest/auth/usecases"
+	"davidPardoC/rest/users/repository/postgres"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
-func CreateAuthRoutes(r *gin.RouterGroup) *gin.RouterGroup {
+func CreateAuthRoutes(r *gin.RouterGroup, db *gorm.DB) *gin.RouterGroup {
 
-	authUseCases := usecases.NewAuthUseCases()
+	userRepository := postgres.NewUserPostgresRepository(db)
+	authUseCases := usecases.NewAuthUseCases(userRepository)
 	authAdapters := adapters.NewAuthAdapters(authUseCases)
 
 	authRouter := r.Group("auth")
