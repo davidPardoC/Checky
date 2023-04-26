@@ -2,6 +2,7 @@ package config
 
 import (
 	authInfraestructure "davidPardoC/rest/auth/infraestructure"
+	"davidPardoC/rest/domain"
 	"davidPardoC/rest/users/infraestructure"
 
 	"github.com/gin-gonic/gin"
@@ -14,4 +15,8 @@ func SetupRoutes(r *gin.Engine, db *gorm.DB) {
 		infraestructure.CreateUserRoutes(v1, db)
 		authInfraestructure.CreateAuthRoutes(v1, db)
 	}
+}
+
+func MakeMigrations(db *gorm.DB) {
+	db.AutoMigrate(domain.User{})
 }

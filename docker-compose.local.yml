@@ -9,8 +9,12 @@ services:
       - POSTGRES_PASSWORD=mysecretpassword
       - POSTGRES_USER=postgres
       - POSTGRES_DB=postgres
+    volumes:
+      - db_volume:/var/lib/postgresql/data
   adminer:
     image: adminer
     restart: always
     ports:
       - 8000:8080
+volumes:
+  db_volume:

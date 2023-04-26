@@ -11,7 +11,6 @@ func NewUserAdapter(uc *usecase.UserUseCase) *userAdpater {
 }
 
 func (ua *userAdpater) HandleNewUser() {
-	ua.uc.CreateNewUser()
 }
 
 func (userAdapter *userAdpater) HandleGetUserById(id string) {

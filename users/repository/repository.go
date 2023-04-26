@@ -1,9 +1,9 @@
 package repository
 
-import "davidPardoC/rest/users/domain"
+import "davidPardoC/rest/domain"
 
 type UserRepository interface {
-	InsertNewUser() string
+	InsertNewUser(domain.User) (int64, error)
 	GetUserByEmail(email string) domain.User
 	GetAllUsers() []domain.User
 }

@@ -4,6 +4,7 @@ import (
 	"davidPardoC/rest/auth/adapters"
 	"davidPardoC/rest/auth/dtos"
 	"davidPardoC/rest/auth/usecases"
+	"davidPardoC/rest/common"
 	"davidPardoC/rest/users/repository/postgres"
 	"net/http"
 
@@ -24,13 +25,27 @@ func CreateAuthRoutes(r *gin.RouterGroup, db *gorm.DB) *gin.RouterGroup {
 
 			if err := ctx.ShouldBindJSON(&json); err != nil {
 				ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+				return
 			}
 
 			res := authAdapters.HandleLogin(json)
-			ctx.String(http.StatusOK, res)
+			ctx.JSON(http.StatusOK, gin.H{"message": res})
 		})
+
 		authRouter.POST("/signup", func(ctx *gin.Context) {
-			authAdapters.HandleSingup("testemail.go")
+			var json dtos.SignupDto
+
+			if err := ctx.ShouldBindJSON(&json); err != nil {
+				ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+				return
+			}
+
+			message, err := authAdapters.HandleSingup(json)
+			if err != nil {
+				ctx.JSON(common.MapErrors(err.Error()))
+				return
+			}
+			ctx.JSON(http.StatusOK, message)
 		})
 	}
 

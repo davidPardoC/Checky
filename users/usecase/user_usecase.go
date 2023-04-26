@@ -11,7 +11,3 @@ func NewUserUseCase(repository repository.UserRepository) *UserUseCase {
 		repository: repository,
 	}
 }
-
-func (uc *UserUseCase) CreateNewUser() {
-	uc.repository.InsertNewUser()
-}

@@ -1,7 +1,7 @@
 package postgres
 
 import (
-	"davidPardoC/rest/users/domain"
+	"davidPardoC/rest/domain"
 
 	"gorm.io/gorm"
 )
@@ -14,8 +14,9 @@ func NewUserPostgresRepository(dB *gorm.DB) *UserPostgresRepository {
 	return &UserPostgresRepository{dB: dB}
 }
 
-func (upr *UserPostgresRepository) InsertNewUser() string {
-	return "User inserted"
+func (repository *UserPostgresRepository) InsertNewUser(user domain.User) (int64, error) {
+	result := repository.dB.Create(&user)
+	return result.RowsAffected, result.Error
 }
 
 func (upr *UserPostgresRepository) GetUserByEmail(email string) domain.User {
