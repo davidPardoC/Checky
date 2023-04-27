@@ -28,8 +28,12 @@ func CreateAuthRoutes(r *gin.RouterGroup, db *gorm.DB) *gin.RouterGroup {
 				return
 			}
 
-			res := authAdapters.HandleLogin(json)
-			ctx.JSON(http.StatusOK, gin.H{"message": res})
+			token, err := authAdapters.HandleLogin(json)
+			if err != nil {
+				ctx.JSON(err.StatusCode, gin.H{"message": err.Message})
+				return
+			}
+			ctx.JSON(http.StatusOK, token)
 		})
 
 		authRouter.POST("/signup", func(ctx *gin.Context) {

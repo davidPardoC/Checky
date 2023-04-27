@@ -27,6 +27,7 @@ func (adapter *authAdapters) HandleSingup(singUpDto dtos.SignupDto) (common.Succ
 
 }
 
-func (a *authAdapters) HandleLogin(loginDto dtos.LoginDto) string {
-	return "Well done papu"
+func (adapter *authAdapters) HandleLogin(loginDto dtos.LoginDto) (*dtos.TokenResponse, *common.CustomError) {
+	token, err := adapter.useCase.LoginUser(loginDto)
+	return token, err
 }

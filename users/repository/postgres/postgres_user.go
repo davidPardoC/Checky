@@ -1,7 +1,10 @@
 package postgres
 
 import (
+	"davidPardoC/rest/common"
 	"davidPardoC/rest/domain"
+	"errors"
+	"net/http"
 
 	"gorm.io/gorm"
 )
@@ -17,4 +20,14 @@ func NewUserPostgresRepository(dB *gorm.DB) *UserPostgresRepository {
 func (repository *UserPostgresRepository) InsertNewUser(user domain.User) (int64, error) {
 	result := repository.dB.Create(&user)
 	return result.RowsAffected, result.Error
+}
+
+func (repository *UserPostgresRepository) GetUserByEmail(email string) (*domain.User, *common.CustomError) {
+	var user domain.User
+	result := repository.dB.Where("email = ?", email).First(&user)
+
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return nil, &common.CustomError{StatusCode: http.StatusNotFound, Message: "Email not foud"}
+	}
+	return &user, nil
 }

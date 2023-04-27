@@ -1,1 +1,40 @@
-[]
+[
+  {
+    "_id": "f2db31d4-2c02-4057-bec3-37ffeca792b8",
+    "colId": "aeec5540-810a-4135-91bf-b3db6d884666",
+    "containerId": "",
+    "name": "login",
+    "url": "localhost:8080/api/v1/auth/login",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2023-04-27T19:25:27.299Z",
+    "modified": "2023-04-27T20:17:44.628Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\t\t\"email\":\"pardodavid10@gmail.com\",\n\t\t\"password\":\"mypassword\"\t\t\n\t}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "1af67828-b10a-43ef-9bc1-092bf2dfe0ac",
+    "colId": "aeec5540-810a-4135-91bf-b3db6d884666",
+    "containerId": "",
+    "name": "signup",
+    "url": "localhost:8080/api/v1/auth/signup",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2023-04-27T19:25:52.460Z",
+    "modified": "2023-04-27T19:28:49.889Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\t\t\"name\":\"david\",\n\t\t\"lastname\":\"pardo\",\n\t\t\"email\":\"pardodavid10@gmail.com\",\n\t\t\"password\":\"mypassword\"\n\t}",
+      "form": []
+    },
+    "tests": []
+  }
+]
