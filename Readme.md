@@ -42,10 +42,16 @@ go test ./...
 Test Coverage:
 
 ```
- go test ./...  -cover -covermode=count -coverpkg=./... -coverprofile=cover.out
+ GO_ENV=test go test ./...  -cover -covermode=count -coverpkg=./... -coverprofile=cover.out
+ go tool cover -func cover.out
  go tool cover -html=cover.out -o cover.html
  // open cover.html
 ```
+or 
+
+```
+./test_coverage.sh
+``` 
 
 TO DO:
 

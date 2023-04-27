@@ -2,7 +2,6 @@ package test
 
 import (
 	"bytes"
-	"davidPardoC/rest/common"
 	"davidPardoC/rest/config"
 	"davidPardoC/rest/domain"
 	"encoding/json"
@@ -13,12 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 )
-
-var basePath string = "/api/v1"
-
-var database, _ = common.GetTestDatabase()
-
-var router = config.SetupRouter(database)
 
 func TestSignupRouteOnBadBody(t *testing.T) {
 
@@ -34,8 +27,8 @@ func TestSignupRouteOnBadBody(t *testing.T) {
 }
 
 func TestSignupRouteOnCorrectBody(t *testing.T) {
-	database.Migrator().DropTable(domain.User{})
-	config.MakeMigrations(database)
+
+	SetupEmptyUserDatabaseTests()
 
 	w := httptest.NewRecorder()
 
@@ -66,4 +59,24 @@ func TestSignupRouteOnCorrectBody(t *testing.T) {
 	assert.Equal(t, expectedBody["Message"], value)
 	assert.Equal(t, 200, w.Code)
 
+}
+
+func TestDuplicatedEmail(t *testing.T) {
+	SetupEmptyUserDatabaseTests()
+	database.Create(&domain.User{Name: "david", LastName: "pardo", Email: "pardodavid10@gmail.com", Password: "mypassword"})
+
+	w := httptest.NewRecorder()
+
+	body := []byte(`{
+		"name":"david",
+		"lastname":"pardo",
+		"email":"pardodavid10@gmail.com",
+		"password":"mypassword"
+	}`)
+
+	req, _ := http.NewRequest("POST", basePath+"/auth/signup", bytes.NewBuffer(body))
+
+	router.ServeHTTP(w, req)
+
+	assert.Equal(t, 409, w.Code)
 }
