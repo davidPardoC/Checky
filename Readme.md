@@ -28,6 +28,18 @@ Recomended to use a live reload tool like [air](https://github.com/cosmtrek/air)
    air -c .air-windows.toml
    ```
 
+## Testing
+
+```
+go test ./...
+```
+
+Test Coverage:
+
+```
+go test ./... -cover
+```
+
 TO DO:
 
 - Ready to go setup.

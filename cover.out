@@ -1,0 +1,11 @@
+mode: set
+davidPardoC/rest/common/database.go:8.38,11.16 3 0
+davidPardoC/rest/common/database.go:11.16,12.38 1 0
+davidPardoC/rest/common/database.go:14.2,14.16 1 0
+davidPardoC/rest/common/database.go:17.42,20.16 3 0
+davidPardoC/rest/common/database.go:20.16,21.38 1 0
+davidPardoC/rest/common/database.go:23.2,23.16 1 0
+davidPardoC/rest/common/messagesFactory.go:21.66,23.2 1 1
+davidPardoC/rest/common/messagesFactory.go:25.50,26.49 1 0
+davidPardoC/rest/common/messagesFactory.go:26.49,28.3 1 0
+davidPardoC/rest/common/messagesFactory.go:30.2,30.69 1 0

@@ -8,9 +8,18 @@ services:
     environment:
       - POSTGRES_PASSWORD=mysecretpassword
       - POSTGRES_USER=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=checky
     volumes:
       - db_volume:/var/lib/postgresql/data
+  db_test:
+    image: postgres
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=checky_test
   adminer:
     image: adminer
     restart: always

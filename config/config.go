@@ -9,12 +9,14 @@ import (
 	"gorm.io/gorm"
 )
 
-func SetupRoutes(r *gin.Engine, db *gorm.DB) {
+func SetupRouter(db *gorm.DB) *gin.Engine {
+	r := gin.Default()
 	v1 := r.Group("/api/v1")
 	{
 		infraestructure.CreateUserRoutes(v1, db)
 		authInfraestructure.CreateAuthRoutes(v1, db)
 	}
+	return r
 }
 
 func MakeMigrations(db *gorm.DB) {

@@ -22,7 +22,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=mysecretpassword
       - POSTGRES_USER=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_DB=checky
   adminer:
     image: adminer
     restart: always
