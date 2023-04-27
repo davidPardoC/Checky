@@ -18,11 +18,3 @@ func (repository *UserPostgresRepository) InsertNewUser(user domain.User) (int64
 	result := repository.dB.Create(&user)
 	return result.RowsAffected, result.Error
 }
-
-func (upr *UserPostgresRepository) GetUserByEmail(email string) domain.User {
-	return domain.User{}
-}
-
-func (upr *UserPostgresRepository) GetAllUsers() []domain.User {
-	return []domain.User{}
-}

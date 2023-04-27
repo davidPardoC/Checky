@@ -2,7 +2,6 @@ package common
 
 import (
 	"net/http"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,9 +22,6 @@ func CreateSuccesCreatedMessage(resource Resource) SuccesMessage {
 }
 
 func MapErrors(errorMessage string) (int, gin.H) {
-	if strings.Contains(errorMessage, "duplicate") {
-		return http.StatusConflict, gin.H{"error": errorMessage}
-	}
 
-	return http.StatusInternalServerError, gin.H{"error": errorMessage}
+	return http.StatusConflict, gin.H{"error": errorMessage}
 }

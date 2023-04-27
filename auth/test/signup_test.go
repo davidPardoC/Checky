@@ -1,8 +1,7 @@
-package test
+package auth_test
 
 import (
 	"bytes"
-	"davidPardoC/rest/config"
 	"davidPardoC/rest/domain"
 	"encoding/json"
 	"net/http"
@@ -15,7 +14,7 @@ import (
 
 func TestSignupRouteOnBadBody(t *testing.T) {
 
-	config.MakeMigrations(database)
+	SetupEmptyUserDatabaseTests()
 
 	w := httptest.NewRecorder()
 

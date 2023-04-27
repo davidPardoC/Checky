@@ -1,4 +1,4 @@
-package test
+package auth_test
 
 import (
 	"davidPardoC/rest/common"
@@ -15,4 +15,8 @@ var router = config.SetupRouter(database)
 func SetupEmptyUserDatabaseTests() {
 	database.Migrator().DropTable(domain.User{})
 	config.MakeMigrations(database)
+}
+
+func GetFinalEndpoint(path string) string {
+	return basePath + "/auth" + path
 }
