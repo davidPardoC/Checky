@@ -1,0 +1,1 @@
+GO_ENV=local air -c .air-unix.toml

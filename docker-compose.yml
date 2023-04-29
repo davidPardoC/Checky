@@ -7,6 +7,8 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile.server
+    links:
+      - db
   web:
     image: checky-web-app
     ports:
