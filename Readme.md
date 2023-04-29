@@ -24,12 +24,14 @@ Recomended to use a live reload tool like [air](https://github.com/cosmtrek/air)
    Mac/linux:
 
    ```
+   cd ./server
    GO_ENV=local air -c .air-unix.toml
    ```
 
    Windows:
 
    ```
+   cd ./server
    GO_ENV=local air -c .air-windows.toml
    ```
 
@@ -56,4 +58,3 @@ or
 TO DO:
 
 - Ready to go setup.
-- Send all server logic to own folder
