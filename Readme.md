@@ -24,13 +24,13 @@ Recomended to use a live reload tool like [air](https://github.com/cosmtrek/air)
    Mac/linux:
 
    ```
-   air -c .air-unix.toml
+   GO_ENV=local air -c .air-unix.toml
    ```
 
    Windows:
 
    ```
-   air -c .air-windows.toml
+   GO_ENV=local air -c .air-windows.toml
    ```
 
 ## Testing
