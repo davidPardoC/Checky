@@ -56,3 +56,4 @@ or
 TO DO:
 
 - Ready to go setup.
+- Send all server login to own folder
