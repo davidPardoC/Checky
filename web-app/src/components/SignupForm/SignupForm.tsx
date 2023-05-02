@@ -1,5 +1,5 @@
 import {  Button, FormControl, FormLabel, Input } from "@chakra-ui/react";
-import { Link } from '@chakra-ui/next-js'
+import Link from "next/link";
 
 export const SignupForm = () => {
   return (
@@ -23,7 +23,7 @@ export const SignupForm = () => {
       <Link href={"/login"}>
         Already have an account?
       </Link>
-      <Button type="submit">Create Account</Button>
+      <Button type="submit" bg={"primary"} color={"white"}>Create Account</Button>
     </form>
   );
 };
