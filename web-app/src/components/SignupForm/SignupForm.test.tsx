@@ -1,20 +1,30 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { SignupForm } from "./SignupForm";
 
 const renderComponent = () => {
-    return render(<SignupForm/>)
-}
+  return render(<SignupForm />);
+};
 
-describe('SignupForm', () => { 
-    it("should render form", async () => {
-        const component = renderComponent()
-        const emailInput = await component.findByPlaceholderText("Email")
-        const passwordInput = await component.findByPlaceholderText("Password")
-        const nameInput = await component.findByPlaceholderText("Name")
-        const lastNameInput = await component.findByPlaceholderText("Last Name")
-        expect(emailInput).toBeInTheDocument()
-        expect(passwordInput).toBeInTheDocument()
-        expect(nameInput).toBeInTheDocument()
-        expect(lastNameInput).toBeInTheDocument()
-    })
- })
+describe("SignupForm", () => {
+  it("should render form", async () => {
+    const component = renderComponent();
+    const emailInput = await component.findByPlaceholderText("Email");
+    const passwordInput = await component.findByPlaceholderText("Password");
+    const nameInput = await component.findByPlaceholderText("Name");
+    const lastNameInput = await component.findByPlaceholderText("Last Name");
+    expect(emailInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
+    expect(nameInput).toBeInTheDocument();
+    expect(lastNameInput).toBeInTheDocument();
+  });
+
+  it("should show go to login ,  'Already have an account? ", async () => {
+    const component = renderComponent();
+
+    const goToLoginText = await component.findByText(
+      "Already have an account?"
+    );
+
+    expect(goToLoginText).toBeInTheDocument();
+  });
+});
