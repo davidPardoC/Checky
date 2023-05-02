@@ -23,7 +23,7 @@ export const SignupForm = () => {
       <Link href={"/login"}>
         Already have an account?
       </Link>
-      <Button>Create Account</Button>
+      <Button type="submit">Create Account</Button>
     </form>
   );
 };

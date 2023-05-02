@@ -27,4 +27,25 @@ describe("SignupForm", () => {
 
     expect(goToLoginText).toBeInTheDocument();
   });
+
+  it("should fill form with bad entries", async () => {
+    const component = renderComponent();
+    const emailInput = await component.findByPlaceholderText("Email");
+    const passwordInput = await component.findByPlaceholderText("Password");
+    const nameInput = await component.findByPlaceholderText("Name");
+    const lastNameInput = await component.findByPlaceholderText("Last Name");
+
+    fireEvent.change(emailInput, { target: { value: "badEmail" } });
+    fireEvent.change(passwordInput, { target: { value: "badpass" } });
+    fireEvent.change(nameInput, { target: { value: "" } });
+    fireEvent.change(lastNameInput, { target: { value: "" } });
+
+    const submittButton = await component.findByText("Create Account");
+
+    fireEvent.click(submittButton);
+
+    const errorMessage = await component.findByText("Name is required");
+
+    expect(errorMessage).toBeInTheDocument();
+  });
 });
