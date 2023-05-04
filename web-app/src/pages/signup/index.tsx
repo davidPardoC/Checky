@@ -1,9 +1,12 @@
 import { SignupForm } from "@/components/SignupForm/SignupForm";
-import { Container } from "@chakra-ui/react";
+import { Container, Heading } from "@chakra-ui/react";
 
 export default function SignupScreen() {
   return (
-    <Container>
+    <Container mt={3}>
+      <Heading textAlign={"center"} color={"primary"}>
+        Checky
+      </Heading>
       <SignupForm />
     </Container>
   );

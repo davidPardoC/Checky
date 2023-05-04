@@ -10,6 +10,8 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import AuthServices from "@/services/auth.services";
+import { SignUpDto } from "@/types/auth";
 
 const schema = yup
   .object({
@@ -54,7 +56,7 @@ export const SignupForm = () => {
     if (!passwordMatch) {
       return;
     }
-    console.log(data);
+    AuthServices.signup(data as SignUpDto)
   };
 
   return (
