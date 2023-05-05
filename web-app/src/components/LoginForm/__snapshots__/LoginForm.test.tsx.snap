@@ -2,31 +2,86 @@
 
 exports[`Login Form should render Login Form 1`] = `
 <div>
-  <form>
-    <div
-      class="chakra-form-control css-0"
-      role="group"
-    >
-      <label
-        class="chakra-form__label css-uvho5g"
-        for="field-:r0:"
-        id="field-:r0:-label"
+  <div
+    class="css-1to3esj"
+  >
+    <form>
+      <h2
+        class="chakra-heading css-29cgwl"
       >
-        Email address
-      </label>
-      <input
-        aria-describedby="field-:r0:-helptext"
-        class="chakra-input css-0"
-        id="field-:r0:"
-        type="email"
-      />
+        Checky
+      </h2>
       <div
-        class="chakra-form__helper-text css-0"
-        id="field-:r0:-helptext"
+        class="chakra-form-control css-0"
+        role="group"
       >
-        We'll never share your email.
+        <label
+          class="chakra-form__label css-uvho5g"
+          for="field-:r0:"
+          id="field-:r0:-label"
+        >
+          Email address
+          <span
+            aria-hidden="true"
+            class="chakra-form__required-indicator css-0"
+            role="presentation"
+          >
+            *
+          </span>
+        </label>
+        <input
+          aria-required="true"
+          class="chakra-input css-0"
+          id="field-:r0:"
+          name="email"
+          required=""
+          type="email"
+        />
       </div>
-    </div>
-  </form>
+      <div
+        class="chakra-form-control css-0"
+        role="group"
+      >
+        <label
+          class="chakra-form__label css-uvho5g"
+          for="field-:r1:"
+          id="field-:r1:-label"
+        >
+          Password
+          <span
+            aria-hidden="true"
+            class="chakra-form__required-indicator css-0"
+            role="presentation"
+          >
+            *
+          </span>
+        </label>
+        <input
+          aria-required="true"
+          class="chakra-input css-0"
+          id="field-:r1:"
+          name="password"
+          required=""
+          type="password"
+        />
+      </div>
+      <div
+        class="css-1kseucd"
+      >
+        <a
+          href="/signup"
+          style="text-decoration: underline;"
+        >
+          Do not have an account?
+        </a>
+        <button
+          class="chakra-button css-gjqafi"
+          type="submit"
+        >
+          Iniciar Sesión
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 `;
