@@ -1,10 +1,16 @@
 import { SignupForm } from "@/components/SignupForm/SignupForm";
 import { Container, Heading } from "@chakra-ui/react";
+import Head from "next/head";
 
 export default function SignupScreen() {
   return (
-    <Container mt={3}>
-      <SignupForm />
-    </Container>
+    <>
+      <Head>
+        <title>SignUp</title>
+      </Head>
+      <Container mt={3}>
+        <SignupForm />
+      </Container>
+    </>
   );
 }
