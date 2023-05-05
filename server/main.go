@@ -3,8 +3,8 @@ package main
 import (
 	"davidPardoC/rest/common"
 	"davidPardoC/rest/config"
+	"fmt"
 
-	"github.com/gin-contrib/cors"
 	"github.com/joho/godotenv"
 )
 
@@ -16,6 +16,6 @@ func main() {
 	database, _ := common.GetDatabase()
 	r := config.SetupRouter(database)
 	config.MakeMigrations(database)
-	r.Use(cors.Default())
+	fmt.Println("Hola")
 	r.Run() // listen and serve on 0.0.0.0:8080
 }

@@ -1,9 +1,11 @@
 import {
+  Box,
   Button,
   Flex,
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Heading,
   Input,
 } from "@chakra-ui/react";
 import Link from "next/link";
@@ -56,68 +58,77 @@ export const SignupForm = () => {
     if (!passwordMatch) {
       return;
     }
-    AuthServices.signup(data as SignUpDto)
+    AuthServices.signup(data as SignUpDto);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl marginTop={3} isInvalid={!!errors.name} isRequired>
-        <FormLabel>Name</FormLabel>
-        <Input type="text" placeholder="Name" {...register("name")} />
-        <FormErrorMessage _firstLetter={{ textTransform: "capitalize" }}>
-          {errors.name?.message as string}
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl marginTop={3} isInvalid={!!errors.lastName} isRequired>
-        <FormLabel>Last Name</FormLabel>
-        <Input type="text" placeholder="Last Name" {...register("lastName")} />
-        <FormErrorMessage>
-          {errors.lastName?.message as string}
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl marginTop={3} isInvalid={!!errors.email} isRequired>
-        <FormLabel>Email</FormLabel>
-        <Input type="email" placeholder="Email" {...register("email")} />
-        <FormErrorMessage>{errors.email?.message as string}</FormErrorMessage>
-      </FormControl>
-      <FormControl marginTop={3} isInvalid={!!errors.password} isRequired>
-        <FormLabel>Password</FormLabel>
-        <Input
-          type="Password"
-          placeholder="Password"
-          {...register("password")}
-        />
-        <FormErrorMessage>
-          {errors.password?.message as string}
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl
-        marginTop={3}
-        marginBottom={5}
-        isInvalid={!!errors.password || !passwordMatch}
-        isRequired
-      >
-        <FormLabel>Repeat Password</FormLabel>
-        <Input
-          type="password"
-          placeholder="Password"
-          {...register("repeatPassword")}
-        />
-        <FormErrorMessage>
-          {errors.repeatPassword?.message as string}
-        </FormErrorMessage>
-        {!passwordMatch && (
-          <FormErrorMessage>The password do not match.</FormErrorMessage>
-        )}
-      </FormControl>
-      <Flex justifyContent={"space-between"} alignItems={"center"}>
-        <Link style={{ textDecoration: "underline" }} href={"/login"}>
-          Already have an account?
-        </Link>
-        <Button type="submit" bg={"primary"} color={"white"}>
-          Create Account
-        </Button>
-      </Flex>
-    </form>
+    <Box boxShadow={"1px 0px 3px"} padding={3} borderRadius={5}>
+      <Heading textAlign={"center"} color={"primary"}>
+        Checky
+      </Heading>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl marginTop={3} isInvalid={!!errors.name} isRequired>
+          <FormLabel>Name</FormLabel>
+          <Input type="text" placeholder="Name" {...register("name")} />
+          <FormErrorMessage _firstLetter={{ textTransform: "capitalize" }}>
+            {errors.name?.message as string}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl marginTop={3} isInvalid={!!errors.lastName} isRequired>
+          <FormLabel>Last Name</FormLabel>
+          <Input
+            type="text"
+            placeholder="Last Name"
+            {...register("lastName")}
+          />
+          <FormErrorMessage>
+            {errors.lastName?.message as string}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl marginTop={3} isInvalid={!!errors.email} isRequired>
+          <FormLabel>Email</FormLabel>
+          <Input type="email" placeholder="Email" {...register("email")} />
+          <FormErrorMessage>{errors.email?.message as string}</FormErrorMessage>
+        </FormControl>
+        <FormControl marginTop={3} isInvalid={!!errors.password} isRequired>
+          <FormLabel>Password</FormLabel>
+          <Input
+            type="Password"
+            placeholder="Password"
+            {...register("password")}
+          />
+          <FormErrorMessage>
+            {errors.password?.message as string}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl
+          marginTop={3}
+          marginBottom={5}
+          isInvalid={!!errors.password || !passwordMatch}
+          isRequired
+        >
+          <FormLabel>Repeat Password</FormLabel>
+          <Input
+            type="password"
+            placeholder="Password"
+            {...register("repeatPassword")}
+          />
+          <FormErrorMessage>
+            {errors.repeatPassword?.message as string}
+          </FormErrorMessage>
+          {!passwordMatch && (
+            <FormErrorMessage>The password do not match.</FormErrorMessage>
+          )}
+        </FormControl>
+        <Flex justifyContent={"space-between"} alignItems={"center"}>
+          <Link style={{ textDecoration: "underline" }} href={"/login"}>
+            Already have an account?
+          </Link>
+          <Button type="submit" bg={"primary"} color={"white"}>
+            Create Account
+          </Button>
+        </Flex>
+      </form>
+    </Box>
   );
 };

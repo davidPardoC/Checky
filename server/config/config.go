@@ -5,12 +5,17 @@ import (
 	"davidPardoC/rest/domain"
 	"davidPardoC/rest/users/infraestructure"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
 func SetupRouter(db *gorm.DB) *gin.Engine {
 	r := gin.Default()
+
+	// added cors
+	r.Use(cors.Default())
+
 	v1 := r.Group("/api/v1")
 	{
 		infraestructure.CreateUserRoutes(v1, db)
