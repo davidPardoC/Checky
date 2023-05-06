@@ -1,8 +1,6 @@
 package dtos
 
 import (
-	"davidPardoC/rest/domain"
-
 	"github.com/golang-jwt/jwt/v5"
 )
 
@@ -24,6 +22,12 @@ type TokenResponse struct {
 }
 
 type JWTClaims struct {
-	domain.User
+	UserWithNoPassword
 	jwt.RegisteredClaims
+}
+
+type UserWithNoPassword struct {
+	Name     string `json:"name"  binding:"required"`
+	LastName string `json:"lastName"  binding:"required"`
+	Email    string `json:"email"  binding:"required"`
 }

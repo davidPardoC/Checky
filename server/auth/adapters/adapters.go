@@ -12,6 +12,7 @@ type authAdapters struct {
 }
 
 func NewAuthAdapters(uc *usecases.AuthUseCases) *authAdapters {
+	uc.CreateInitialAdminUser()
 	return &authAdapters{useCase: uc}
 }
 

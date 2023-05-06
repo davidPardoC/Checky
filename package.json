@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "jest": "^29.5.0",
-    "next-cookies": "^2.0.3"
-  }
-}

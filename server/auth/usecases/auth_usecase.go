@@ -2,11 +2,15 @@ package usecases
 
 import (
 	"davidPardoC/rest/auth/dtos"
+	"davidPardoC/rest/auth/enums"
 	"davidPardoC/rest/common"
 	"davidPardoC/rest/domain"
 	"davidPardoC/rest/users/repository"
+
+	"fmt"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -39,9 +43,28 @@ func (useCase *AuthUseCases) LoginUser(loginUser dtos.LoginDto) (*dtos.TokenResp
 	return signJwt(*user), nil
 }
 
+func (useCase *AuthUseCases) CreateInitialAdminUser() (bool, error) {
+	adminEmail := os.Getenv("ADMIN_EMAIL")
+	adminPassword := os.Getenv("ADMIN_PASSWORD")
+	adminName := os.Getenv("ADMIN_NAME")
+	adminLastName := os.Getenv("ADMIN_LAST_NAME")
+	user := domain.User{Email: adminEmail, Password: adminPassword, Name: adminName, LastName: adminLastName, Role: enums.AdminRole}
+	_, err := useCase.SignUpUser(user)
+	if err != nil {
+		if strings.Contains(err.Error(), "duplicate") {
+			fmt.Println("Admin user already registered.")
+			return true, nil
+		}
+		return false, err
+	}
+	fmt.Println("Admin user created.")
+	return false, nil
+}
+
 func signJwt(user domain.User) *dtos.TokenResponse {
-	tokenJwtClaims := dtos.JWTClaims{User: user, RegisteredClaims: jwt.RegisteredClaims{ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour))}}
-	refreshTokenJwtClaims := dtos.JWTClaims{User: user, RegisteredClaims: jwt.RegisteredClaims{ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * 7 * time.Hour))}}
+	noPasswordUser := dtos.UserWithNoPassword{Email: user.Email, Name: user.Email, LastName: user.LastName}
+	tokenJwtClaims := dtos.JWTClaims{UserWithNoPassword: noPasswordUser, RegisteredClaims: jwt.RegisteredClaims{ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour))}}
+	refreshTokenJwtClaims := dtos.JWTClaims{UserWithNoPassword: noPasswordUser, RegisteredClaims: jwt.RegisteredClaims{ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * 7 * time.Hour))}}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, tokenJwtClaims)
 	refreshToken := jwt.NewWithClaims(jwt.SigningMethodHS256, refreshTokenJwtClaims)
 
