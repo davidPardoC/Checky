@@ -12,7 +12,10 @@ type authAdapters struct {
 }
 
 func NewAuthAdapters(uc *usecases.AuthUseCases) *authAdapters {
-	uc.CreateInitialAdminUser()
+	success, _ := uc.CreateInitialAdminUser()
+	if !success {
+		panic("Cant create admin user.")
+	}
 	return &authAdapters{useCase: uc}
 }
 

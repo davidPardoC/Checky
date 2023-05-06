@@ -58,7 +58,7 @@ func (useCase *AuthUseCases) CreateInitialAdminUser() (bool, error) {
 		return false, err
 	}
 	fmt.Println("Admin user created.")
-	return false, nil
+	return true, nil
 }
 
 func signJwt(user domain.User) *dtos.TokenResponse {
