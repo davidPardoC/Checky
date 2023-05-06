@@ -29,9 +29,8 @@ export const LoginForm = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = async (data: { [key: string]: any }) => {
-    const responseData = await AuthServices.login(data as LoginDto)
-    console.log(responseData)
-  }
+    const responseData = await AuthServices.login(data as LoginDto);
+  };
 
   return (
     <Box boxShadow={"1px 0px 3px"} padding={3} borderRadius={5}>
@@ -42,9 +41,7 @@ export const LoginForm = () => {
         <FormControl isRequired isInvalid={!!errors.email}>
           <FormLabel>Email address</FormLabel>
           <Input type="email" {...register("email")} />
-          <FormErrorMessage>
-            {errors.email?.message as string}
-          </FormErrorMessage>
+          <FormErrorMessage>{errors.email?.message as string}</FormErrorMessage>
         </FormControl>
         <FormControl isRequired isInvalid={!!errors.password}>
           <FormLabel>Password</FormLabel>

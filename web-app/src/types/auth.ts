@@ -12,4 +12,9 @@ export type SingupResponse = {
 export type LoginDto = {
   email: string;
   password: string;
-}
+};
+
+export type LoginResponseDto = {
+  token: string;
+  refreshToken: string;
+};
