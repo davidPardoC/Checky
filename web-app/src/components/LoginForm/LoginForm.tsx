@@ -29,7 +29,7 @@ export const LoginForm = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = async (data: { [key: string]: any }) => {
-    const responseData = await AuthServices.login(data as LoginDto);
+    await AuthServices.login(data as LoginDto);
   };
 
   return (
