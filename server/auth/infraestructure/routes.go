@@ -36,7 +36,7 @@ func CreateAuthRoutes(r *gin.RouterGroup, db *gorm.DB) *gin.RouterGroup {
 			ctx.JSON(http.StatusOK, token)
 		})
 
-		authRouter.POST("/signup", func(ctx *gin.Context) {
+		authRouter.POST("/", func(ctx *gin.Context) {
 			var json dtos.SignupDto
 
 			if err := ctx.ShouldBindJSON(&json); err != nil {
@@ -51,6 +51,7 @@ func CreateAuthRoutes(r *gin.RouterGroup, db *gorm.DB) *gin.RouterGroup {
 			}
 			ctx.JSON(http.StatusOK, message)
 		})
+
 	}
 
 	return authRouter

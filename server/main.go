@@ -14,8 +14,8 @@ func main() {
 		panic("Not .env file")
 	}
 	database, _ := common.GetDatabase()
-	r := config.SetupRouter(database)
 	config.MakeMigrations(database)
+	r := config.SetupRouter(database)
 	fmt.Println("Hola")
 	r.Run() // listen and serve on 0.0.0.0:8080
 }

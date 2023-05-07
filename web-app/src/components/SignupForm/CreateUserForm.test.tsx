@@ -1,8 +1,8 @@
 import { fireEvent, render } from "@testing-library/react";
-import { SignupForm } from "./SignupForm";
+import { CreateUserForm } from "./CreateUserForm";
 
 const renderComponent = () => {
-  return render(<SignupForm />);
+  return render(<CreateUserForm />);
 };
 
 describe("SignupForm", () => {

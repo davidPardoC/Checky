@@ -11,7 +11,7 @@ const basePath = "/api/v1/auth";
 
 const signup = async (newUser: SignUpDto) => {
   const { data } = await axios.post<SingupResponse>(
-    `${basePath}/signup`,
+    `${basePath}`,
     newUser
   );
   return data;
