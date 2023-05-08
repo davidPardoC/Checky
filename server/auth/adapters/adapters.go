@@ -20,7 +20,7 @@ func NewAuthAdapters(uc *usecases.AuthUseCases) *authAdapters {
 }
 
 func (adapter *authAdapters) HandleSingup(singUpDto dtos.SignupDto) (common.SuccesMessage, error) {
-	user := domain.User{Name: singUpDto.Name, LastName: singUpDto.LastName, Password: singUpDto.Password, Email: singUpDto.Email}
+	user := domain.User{Name: singUpDto.Name, LastName: singUpDto.LastName, Password: singUpDto.Password, Email: singUpDto.Email, Role: singUpDto.Role}
 	rowsAffected, err := adapter.useCase.SignUpUser(user)
 
 	if rowsAffected > 0 {

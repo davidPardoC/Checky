@@ -11,17 +11,20 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 import { CreateUserForm } from "../SignupForm/CreateUserForm";
+import useUsersStore from "@/store/users.store";
 
 const UsersTable = () => {
   const [showAddModal, setShowAddModal] = useState(false);
 
+  const users = useUsersStore((state) => state.users);
+
   const openAddUserModal = () => {
-    setShowAddModal(true)
-  }
+    setShowAddModal(true);
+  };
 
   const closeModal = () => {
-    setShowAddModal(false)
-  }
+    setShowAddModal(false);
+  };
 
   return (
     <>
@@ -41,12 +44,14 @@ const UsersTable = () => {
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
-                <Td>David</Td>
-                <Td>Pardo</Td>
-                <Td>pardodavid10@gmail.com</Td>
-                <Td>Actions</Td>
-              </Tr>
+              {users.map((user) => (
+                <Tr key={user.id}>
+                  <Td>{user.name}</Td>
+                  <Td>{user.lastname}</Td>
+                  <Td>{user.email}</Td>
+                  <Td>{user.role}</Td>
+                </Tr>
+              ))}
             </Tbody>
           </Table>
         </TableContainer>
