@@ -1,17 +1,25 @@
 package adapters
 
-import "davidPardoC/rest/users/usecase"
+import (
+	"davidPardoC/rest/common"
+	"davidPardoC/rest/domain"
+	"davidPardoC/rest/users/usecases"
+)
 
 type userAdpater struct {
-	uc *usecase.UserUseCase
+	usecase *usecases.UserUseCase
 }
 
-func NewUserAdapter(uc *usecase.UserUseCase) *userAdpater {
-	return &userAdpater{uc: uc}
+func NewUserAdapter(usecase *usecases.UserUseCase) *userAdpater {
+	return &userAdpater{usecase: usecase}
 }
 
-func (ua *userAdpater) HandleNewUser() {
+func (adapter *userAdpater) HandleNewUser() {
 }
 
-func (userAdapter *userAdpater) HandleGetUserById(id string) {
+func (adapter *userAdpater) HandleGetUserById(id string) {
+}
+
+func (adapter *userAdpater) GetAllUsers() (*[]domain.NoPasswordUser, *common.CustomError) {
+	return adapter.usecase.GetAllUsers()
 }

@@ -31,3 +31,13 @@ func (repository *UserPostgresRepository) GetUserByEmail(email string) (*domain.
 	}
 	return &user, nil
 }
+
+func (repository *UserPostgresRepository) GetAllUsers() (*[]domain.User, *common.CustomError) {
+	var users []domain.User
+	result := repository.dB.Find(&users)
+	if result.Error != nil {
+		return nil, &common.CustomError{StatusCode: http.StatusInternalServerError, Message: "Internal Server Error"}
+	}
+
+	return &users, nil
+}
