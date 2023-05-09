@@ -22,6 +22,6 @@ func (repo *RolesPostgresRepository) GetAllRoles() []domain.Role {
 
 func (repo *RolesPostgresRepository) InsertRole(name string) (int64, error) {
 	role := domain.Role{Name: name}
-	result := repo.dB.Create(role)
+	result := repo.dB.Create(&role)
 	return result.RowsAffected, result.Error
 }

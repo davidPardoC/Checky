@@ -1,3 +1,4 @@
+import AlertComponent from "@/components/Alert/Alert";
 import UsersTable from "@/components/UsersTable/UsersTable";
 import RolesService from "@/services/roles.services";
 import UserServices from "@/services/users.services";
@@ -15,12 +16,14 @@ type UsersPageProps = {
 export default function Page({ roles, users }: UsersPageProps) {
   const setRoles = useUsersStore((state) => state.setAllroles);
   const setUsers = useUsersStore((state) => state.setAllUsers);
+  const error = useUsersStore((state) => state.error);
 
   setRoles(roles);
   setUsers(users);
 
   return (
     <>
+      {error.show && <AlertComponent message={error.message} />}
       <Head>
         <title>Users</title>
       </Head>

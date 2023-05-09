@@ -27,8 +27,10 @@ func (useCase *RolesUseCases) CreateRole(role domain.Role) (int64, error) {
 
 func (useCase *RolesUseCases) createInitialRoles() {
 	adminRole := domain.Role{Name: "admin"}
-	employeeRole := domain.Role{Name: "employee"}
-	roles := []domain.Role{adminRole, employeeRole}
+	cook := domain.Role{Name: "cook"}
+	waiter := domain.Role{Name: "waiter"}
+	assistant := domain.Role{Name: "assistant"}
+	roles := []domain.Role{adminRole, cook, waiter, assistant}
 	for i, role := range roles {
 		fmt.Printf("[%d] Created role: %s\n", i, role.Name)
 		useCase.CreateRole(role)

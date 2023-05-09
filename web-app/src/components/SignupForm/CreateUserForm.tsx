@@ -45,6 +45,7 @@ const schema = yup
       .string()
       .min(8, "Password must have at least 8 characters")
       .required("Field is required."),
+    role: yup.string().required("Field is required.")
   })
   .required();
 
@@ -60,6 +61,7 @@ export const CreateUserForm = ({ onClose }: CreateUserModalProps) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  const showError = useUsersStore((state) => state.showError);
   const roles = useUsersStore((state) => state.roles);
 
   const password = watch("password");
@@ -71,7 +73,7 @@ export const CreateUserForm = ({ onClose }: CreateUserModalProps) => {
     if (!passwordMatch) {
       return;
     }
-    AuthServices.signup(data as SignUpDto);
+    AuthServices.signup(data as SignUpDto, showError);
   };
 
   return (
@@ -136,15 +138,18 @@ export const CreateUserForm = ({ onClose }: CreateUserModalProps) => {
                 <FormErrorMessage>The password do not match.</FormErrorMessage>
               )}
             </FormControl>
-            <FormControl marginTop={3}>
+            <FormControl marginTop={3} isInvalid={!!errors.role}>
               <FormLabel>Role</FormLabel>
-              <Select textTransform={"capitalize"} placeholder="Select option">
+              <Select  textTransform={"capitalize"} placeholder="Select option" {...register("role")}>
                 {roles.map((role) => (
                   <option className="capitalize" key={role.name} value={role.name}>
                     {role.name}
                   </option>
                 ))}
               </Select>
+              <FormErrorMessage>
+                {errors.role?.message as string}
+              </FormErrorMessage>
             </FormControl>
 
             <Flex
